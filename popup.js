@@ -9,7 +9,6 @@ function saveColor(color) {
         chrome.storage.local.set({ colors: colors }, () => {
             console.log('Color saved:', color);
             updateUIWithColors(colors); // Update the UI with the new color list
-            updateBadgeWithLatestColor(color); // Update the extension badge with the latest color
         });
     });
 }
