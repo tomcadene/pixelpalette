@@ -6,13 +6,18 @@ PixelPalette is a browser extension designed to enhance the workflow of designer
 
 ### Key Features:
 Instant Color Selection: Use the EyeDropper API to click and capture any color from your web browser.
+
 Multiple Color Formats: Automatically convert and copy the selected color into hexadecimal, RGB, or HSL formats.
+
 Customizable Shortcuts: Set up keyboard shortcuts to activate the color picker without disrupting your workflow. (wip)
+
 Palette Management: Save and organize your favorite colors into custom palettes for easy access and reference. (wip)
 
 ### How It Works:
-Activate Pixel Palette: With a simple keyboard shortcut or by clicking the extension icon.
+Activate PixelPalette: With a simple keyboard shortcut or by clicking the extension icon.
+
 Select Color: Hover over any pixel on your browser window to preview the color. Click to select.
+
 Copy & Use: The color's value is automatically saved in the extension popup and copied to your clipboard in your chosen format, ready to be pasted into your code or design tool. (wip)
 
 ### Use Case:
