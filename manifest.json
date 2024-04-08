@@ -9,5 +9,8 @@
   },
   "background": {
     "service_worker": "background.js"
+  },
+  "icons": {
+    "128": "pixelpalette_logo_128.png"
   }
 }
