@@ -11,6 +11,6 @@
     "service_worker": "background.js"
   },
   "icons": {
-    "128": "pixelpalette_logo_128.png"
+    "128": "pp_logo_128.png"
   }
 }
