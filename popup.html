@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Color Picker</title>
     <style>
@@ -9,19 +8,30 @@
             padding: 10px;
         }
 
+        .color-box {
+            padding: 10px;
+            margin-bottom: 5px;
+            color: #FFF; /* White text color */
+            display: none; /* Initially hidden */
+        }
+
         #pickedColor {
             margin-top: 10px;
+            padding: 10px;
         }
     </style>
 </head>
-
 <body>
     <button id="pickColor">Pick Color</button>
     <div id="pickedColor">No color picked yet.</div>
     <div>Saved colors:</div>
-    <div id="pickedColors"></div>
+    <!-- Predefined divs for displaying colors -->
+    <div id="color1" class="color-box"></div>
+    <div id="color2" class="color-box"></div>
+    <div id="color3" class="color-box"></div>
+    <div id="color4" class="color-box"></div>
+    <div id="color5" class="color-box"></div>
 
     <script src="popup.js"></script>
 </body>
-
 </html>
