@@ -72,18 +72,23 @@ function rgbToHSL(r, g, b) {
 
 // Function to update the UI with the saved colors
 function updateUIWithColors(colors) {
-    const colorsList = document.getElementById('pickedColors');
-    colorsList.innerHTML = ''; // Clear current list
-    colors.forEach((colorInfo) => {
-        const colorElement = document.createElement('div');
-        colorElement.style.backgroundColor = colorInfo.hex; // Set the background color
-        colorElement.style.padding = '10px';
-        colorElement.style.marginBottom = '5px';
-        colorElement.style.color = '#FFF'; // Set text color for visibility
-        colorElement.textContent = `Hex: ${colorInfo.hex}, RGB: ${colorInfo.rgb}, HSL: ${colorInfo.hsl}`;
-        colorsList.appendChild(colorElement);
+    // Hide all color boxes initially
+    for (let i = 1; i <= 5; i++) {
+        const colorBox = document.getElementById(`color${i}`);
+        colorBox.style.display = 'none';
+    }
+
+    // Update visible color boxes with color info
+    colors.forEach((colorInfo, index) => {
+        if (index < 5) { // Only update the first 5 boxes
+            const colorBox = document.getElementById(`color${index + 1}`);
+            colorBox.style.backgroundColor = colorInfo.hex;
+            colorBox.style.display = 'block'; // Make the box visible
+            colorBox.textContent = `Hex: ${colorInfo.hex}, RGB: ${colorInfo.rgb}, HSL: ${colorInfo.hsl}`;
+        }
     });
 }
+
 
 // Load and display saved colors when the popup is opened
 chrome.storage.local.get({ colors: [] }, (result) => {
