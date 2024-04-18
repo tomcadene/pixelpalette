@@ -1,3 +1,22 @@
+// Function that activates the EyeDropper API and handles the color picking process
+async function pickColor() {
+    try {
+        const eyeDropper = new EyeDropper();
+        const result = await eyeDropper.open();
+        const hexColor = result.sRGBHex;
+        const rgbColor = hexToRGB(hexColor);
+        const [r, g, b] = rgbColor.match(/\d+/g).map(Number);
+        const hslColor = rgbToHSL(r, g, b);
+        
+        const colorInfo = { hex: hexColor, rgb: rgbColor, hsl: hslColor };
+        document.getElementById('pickedColor').textContent = `Picked color: ${hexColor}, ${rgbColor}, ${hslColor}`;
+        saveColor(colorInfo); // Save the picked color with all formats
+    } catch (error) {
+        document.getElementById('pickedColor').textContent = 'Error picking color.';
+        console.error('Error picking color:', error);
+    }
+}
+
 // Function to save color to Chrome's local storage
 function saveColor(colorInfo) {
     chrome.storage.local.get({ colors: [] }, (result) => {
@@ -53,25 +72,6 @@ function updateUIWithColors(colors) {
         colorElement.textContent = `Hex: ${colorInfo.hex}, RGB: ${colorInfo.rgb}, HSL: ${colorInfo.hsl}`;
         colorsList.appendChild(colorElement);
     });
-}
-
-// Function that activates the EyeDropper API and handles the color picking process
-async function pickColor() {
-    try {
-        const eyeDropper = new EyeDropper();
-        const result = await eyeDropper.open();
-        const hexColor = result.sRGBHex;
-        const rgbColor = hexToRGB(hexColor);
-        const [r, g, b] = rgbColor.match(/\d+/g).map(Number);
-        const hslColor = rgbToHSL(r, g, b);
-        
-        const colorInfo = { hex: hexColor, rgb: rgbColor, hsl: hslColor };
-        document.getElementById('pickedColor').textContent = `Picked color: ${hexColor}, ${rgbColor}, ${hslColor}`;
-        saveColor(colorInfo); // Save the picked color with all formats
-    } catch (error) {
-        document.getElementById('pickedColor').textContent = 'Error picking color.';
-        console.error('Error picking color:', error);
-    }
 }
 
 // Load and display saved colors when the popup is opened
