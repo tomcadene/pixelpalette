@@ -7,15 +7,22 @@ async function pickColor() {
         const rgbColor = hexToRGB(hexColor);
         const [r, g, b] = rgbColor.match(/\d+/g).map(Number);
         const hslColor = rgbToHSL(r, g, b);
-        
+
         const colorInfo = { hex: hexColor, rgb: rgbColor, hsl: hslColor };
-        document.getElementById('pickedColor').textContent = `Picked color: ${hexColor}, ${rgbColor}, ${hslColor}`;
+        const pickedColorElement = document.getElementById('pickedColor');
+        pickedColorElement.textContent = `Picked color: ${hexColor}, ${rgbColor}, ${hslColor}`;
+        pickedColorElement.style.backgroundColor = hexColor; // Visual display of the color
+        pickedColorElement.style.color = '#FFF'; // Ensure text is visible
+        pickedColorElement.style.padding = '10px';
+        
         saveColor(colorInfo); // Save the picked color with all formats
     } catch (error) {
-        document.getElementById('pickedColor').textContent = 'Error picking color.';
+        const pickedColorElement = document.getElementById('pickedColor');
+        pickedColorElement.textContent = 'Error picking color.';
         console.error('Error picking color:', error);
     }
 }
+
 
 // Function to save color to Chrome's local storage
 function saveColor(colorInfo) {
@@ -66,13 +73,18 @@ function rgbToHSL(r, g, b) {
 // Function to update the UI with the saved colors
 function updateUIWithColors(colors) {
     const colorsList = document.getElementById('pickedColors');
-    colorsList.innerHTML = '';
+    colorsList.innerHTML = ''; // Clear current list
     colors.forEach((colorInfo) => {
         const colorElement = document.createElement('div');
+        colorElement.style.backgroundColor = colorInfo.hex; // Set the background color
+        colorElement.style.padding = '10px';
+        colorElement.style.marginBottom = '5px';
+        colorElement.style.color = '#FFF'; // Set text color for visibility
         colorElement.textContent = `Hex: ${colorInfo.hex}, RGB: ${colorInfo.rgb}, HSL: ${colorInfo.hsl}`;
         colorsList.appendChild(colorElement);
     });
 }
+
 
 // Load and display saved colors when the popup is opened
 chrome.storage.local.get({ colors: [] }, (result) => {
