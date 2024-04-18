@@ -9,23 +9,23 @@
         }
 
         .color-box {
-            padding: 10px;
-            margin-bottom: 5px;
-            color: #FFF; /* White text color */
-            display: none; /* Initially hidden */
+            width: 30px; /* Small cubes for saved colors */
+            height: 30px;
+            margin: 5px;
+            display: inline-block; /* Display cubes in a line */
+            cursor: pointer; /* Pointer cursor on hover */
         }
 
-        #pickedColor {
-            margin-top: 10px;
+        #selectedColor {
+            margin-bottom: 10px;
             padding: 10px;
         }
     </style>
 </head>
 <body>
     <button id="pickColor">Pick Color</button>
-    <div id="pickedColor">No color picked yet.</div>
+    <div id="selectedColor">No color selected yet.</div>
     <div>Saved colors:</div>
-    <!-- Predefined divs for displaying colors -->
     <div id="color1" class="color-box"></div>
     <div id="color2" class="color-box"></div>
     <div id="color3" class="color-box"></div>
