@@ -23,7 +23,6 @@ async function pickColor() {
     }
 }
 
-
 // Function to save color to Chrome's local storage
 function saveColor(colorInfo) {
     chrome.storage.local.get({ colors: [] }, (result) => {
@@ -32,7 +31,8 @@ function saveColor(colorInfo) {
         if (colors.length > 5) {
             colors = colors.slice(-5); // Keep only the last 5 colors
         }
-        chrome.storage.local.set({ colors: colors }, () => {
+        // Save the colors array and the latest color separately
+        chrome.storage.local.set({ colors: colors, latestColor: colorInfo.hex }, () => {
             console.log('Color saved:', colorInfo);
             updateUIWithColors(colors); // Update the UI with the new color list
         });
