@@ -5,6 +5,15 @@
 
 Browser extension that lets you pick a color from any web page.
 
+### Key Features:
+👁️ Instant Color Selection: Use the EyeDropper API to click and capture any color from your web browser.
+
+✨ Multiple Color Formats: Automatically convert the selected color into hexadecimal, RGB, or HSL formats.
+
+🎨 Palette Management: Automatically save the latests colors for easy access and reference.
+
+////////////////
+
 ### Project Description:
 PixelPalette is a browser extension designed to enhance the workflow of designers, developers, and digital artists by providing an intuitive and efficient way to capture and utilize colors directly from their browser. Leveraging the powerful EyeDropper API, Pixel Palette allows users to select any color visible on their screen with a simple click, instantly copying the color's hexadecimal, RGB, or HSL value to their clipboard. This tool is especially useful for web development, graphic design, and any digital project where color precision is key.
 
