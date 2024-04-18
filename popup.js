@@ -85,10 +85,13 @@ function updateUIWithColors(colors) {
     });
 }
 
-
 // Load and display saved colors when the popup is opened
 chrome.storage.local.get({ colors: [] }, (result) => {
-    updateUIWithColors(result.colors);
+    if (chrome.runtime.lastError) {
+        console.error("Error retrieving colors:", chrome.runtime.lastError);
+    } else {
+        updateUIWithColors(result.colors);
+    }
 });
 
 document.getElementById('pickColor').addEventListener('click', pickColor);
