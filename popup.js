@@ -9,7 +9,7 @@ async function pickColor() {
         const hslColor = rgbToHSL(r, g, b);
 
         const colorInfo = { hex: hexColor, rgb: rgbColor, hsl: hslColor };
-        const pickedColorElement = document.getElementById('pickedColor');
+        const pickedColorElement = document.getElementById('selectedColor');
         pickedColorElement.textContent = `Picked color: ${hexColor}, ${rgbColor}, ${hslColor}`;
         pickedColorElement.style.backgroundColor = hexColor; // Visual display of the color
         pickedColorElement.style.color = '#FFF'; // Ensure text is visible
@@ -17,7 +17,7 @@ async function pickColor() {
         
         saveColor(colorInfo); // Save the picked color with all formats
     } catch (error) {
-        const pickedColorElement = document.getElementById('pickedColor');
+        const pickedColorElement = document.getElementById('selectedColor');
         pickedColorElement.textContent = 'Error picking color.';
         console.error('Error picking color:', error);
     }
@@ -69,28 +69,34 @@ function rgbToHSL(r, g, b) {
     return `hsl(${(h * 360).toFixed(1)}, ${(s * 100).toFixed(1)}%, ${(l * 100).toFixed(1)}%)`;
 }
 
+// Function to display the selected color
+function displaySelectedColor(colorInfo) {
+    const selectedColorElement = document.getElementById('selectedColor');
+    selectedColorElement.textContent = `Selected color: Hex: ${colorInfo.hex}, RGB: ${colorInfo.rgb}, HSL: ${colorInfo.hsl}`;
+    selectedColorElement.style.backgroundColor = colorInfo.hex;
+    selectedColorElement.style.color = '#FFF'; // Ensure text is visible
+    selectedColorElement.style.display = 'block';
+}
 
-// Function to update the UI with the saved colors
+// Updated function to update the UI with saved colors
 function updateUIWithColors(colors) {
-    // Hide all color boxes initially
-    for (let i = 1; i <= 5; i++) {
-        const colorBox = document.getElementById(`color${i}`);
-        colorBox.style.display = 'none';
-    }
-
-    // Update visible color boxes with color info
     colors.forEach((colorInfo, index) => {
-        if (index < 5) { // Only update the first 5 boxes
-            const colorBox = document.getElementById(`color${index + 1}`);
+        const colorBox = document.getElementById(`color${index + 1}`);
+        if (colorBox) {
             colorBox.style.backgroundColor = colorInfo.hex;
             colorBox.style.display = 'block'; // Make the box visible
-            colorBox.textContent = `Hex: ${colorInfo.hex}, RGB: ${colorInfo.rgb}, HSL: ${colorInfo.hsl}`;
+            colorBox.onclick = () => displaySelectedColor(colorInfo); // Update selected color on click
         }
     });
+
+    // Display the most recent color in the 'Selected' section
+    if (colors.length > 0) {
+        displaySelectedColor(colors[colors.length - 1]);
+    }
 }
 
 
-// Load and display saved colors when the popup is opened
+// Load and display saved colors and the latest selected color when the popup is opened
 chrome.storage.local.get({ colors: [] }, (result) => {
     if (chrome.runtime.lastError) {
         console.error("Error retrieving colors:", chrome.runtime.lastError);
