@@ -9,16 +9,12 @@ async function pickColor() {
         const hslColor = rgbToHSL(r, g, b);
 
         const colorInfo = { hex: hexColor, rgb: rgbColor, hsl: hslColor };
-        const pickedColorElement = document.getElementById('selectedColor');
-        pickedColorElement.textContent = `Picked color: ${hexColor}, ${rgbColor}, ${hslColor}`;
-        pickedColorElement.style.backgroundColor = hexColor; // Visual display of the color
-        pickedColorElement.style.color = '#FFF'; // Ensure text is visible
-        pickedColorElement.style.padding = '10px';
-        
+        displaySelectedColor(colorInfo); // Update the selected color display
+
         saveColor(colorInfo); // Save the picked color with all formats
     } catch (error) {
-        const pickedColorElement = document.getElementById('selectedColor');
-        pickedColorElement.textContent = 'Error picking color.';
+        const selectedColorElement = document.getElementById('selectedColor');
+        selectedColorElement.textContent = 'Error picking color.';
         console.error('Error picking color:', error);
     }
 }
@@ -31,13 +27,14 @@ function saveColor(colorInfo) {
         if (colors.length > 5) {
             colors = colors.slice(-5); // Keep only the last 5 colors
         }
-        // Save the colors array and the latest color separately
+        // Save the colors array and the latest color separately and update UI
         chrome.storage.local.set({ colors: colors, latestColor: colorInfo.hex }, () => {
             console.log('Color saved:', colorInfo);
             updateUIWithColors(colors); // Update the UI with the new color list
         });
     });
 }
+
 
 // Convert Hex to RGB
 function hexToRGB(hex) {
@@ -78,8 +75,14 @@ function displaySelectedColor(colorInfo) {
     selectedColorElement.style.display = 'block';
 }
 
-// Updated function to update the UI with saved colors
+// Updated function to update the UI with the saved colors
 function updateUIWithColors(colors) {
+    // Hide all color boxes initially
+    for (let i = 1; i <= 5; i++) {
+        const colorBox = document.getElementById(`color${i}`);
+        colorBox.style.display = 'none'; // Ensure it's hidden if not used
+    }
+
     colors.forEach((colorInfo, index) => {
         const colorBox = document.getElementById(`color${index + 1}`);
         if (colorBox) {
