@@ -27,4 +27,4 @@ Copy & Use: The color's value is automatically saved in the extension popup and 
 Perfect for web developers who need to match color codes from different websites, graphic designers seeking inspiration across the web, or anyone involved in digital content creation who requires quick and accurate color sampling.
 
 ### Getting Started:
-PixelPalette is easy to install and requires minimal permissions. Simply add it to your browser from the extension store, configure your preferred settings, and start capturing colors with unmatched ease and precision.
+PixelPalette is easy to install and requires minimal permissions. Simply download the repo, extract it, in chrome find the "Manage extensions" or search chrome://extensions/ in the chrome top searchbar, enable developper mode, click the "Load unpacked" button, select the pixelpalette folder, pin the extension and start capturing colors with unmatched ease and precision.
