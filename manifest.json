@@ -3,7 +3,11 @@
   "name": "Pixel Palette - Color Picker",
   "version": "1.0",
   "description": "Pick a color from any webpage.",
-  "permissions": ["activeTab", "scripting", "storage"],
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
   "action": {
     "default_popup": "popup.html"
   },
