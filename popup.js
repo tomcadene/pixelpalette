@@ -65,13 +65,34 @@ function rgbToHSL(r, g, b) {
     return `hsl(${(h * 360).toFixed(1)}, ${(s * 100).toFixed(1)}%, ${(l * 100).toFixed(1)}%)`;
 }
 
+// Determine if the background color is light or dark
+function isLightColor(hex) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    const brightness = (r * 299 + g * 587 + b * 114) / 1000; // Calculate relative luminance
+    return brightness > 186; // Threshold of 186, roughly the midpoint
+}
+
 // Function to display the selected color
+// Display the selected color with appropriate text color for visibility
 function displaySelectedColor(colorInfo) {
-    const selectedColorElement = document.getElementById('selectedColor');
-    selectedColorElement.textContent = `Selected color: Hex: ${colorInfo.hex}, RGB: ${colorInfo.rgb}, HSL: ${colorInfo.hsl}`;
-    selectedColorElement.style.backgroundColor = colorInfo.hex;
-    selectedColorElement.style.color = '#FFF'; // Ensure text is visible
-    selectedColorElement.style.display = 'block';
+    // Get each element
+    const hexElement = document.getElementById('hexCode');
+    const rgbElement = document.getElementById('rgbCode');
+    const hslElement = document.getElementById('hslCode');
+    const containerElement = document.getElementById('selectedColor');
+
+    // Set text content for each color component
+    hexElement.textContent = `Hex: ${colorInfo.hex}`;
+    rgbElement.textContent = `RGB: ${colorInfo.rgb}`;
+    hslElement.textContent = `HSL: ${colorInfo.hsl}`;
+
+    // Apply background color to the container
+    containerElement.style.backgroundColor = colorInfo.hex;
+    // Adjust text color based on background brightness
+    containerElement.style.color = isLightColor(colorInfo.hex) ? '#000' : '#FFF';
+    containerElement.style.display = 'block';  // Ensure the container is visible
 }
 
 // Updated function to update the UI with the saved colors
