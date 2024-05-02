@@ -35,7 +35,6 @@ function saveColor(colorInfo) {
     });
 }
 
-
 // Convert Hex to RGB
 function hexToRGB(hex) {
     let r = parseInt(hex.slice(1, 3), 16);
@@ -97,7 +96,6 @@ function updateUIWithColors(colors) {
         displaySelectedColor(colors[colors.length - 1]);
     }
 }
-
 
 // Load and display saved colors and the latest selected color when the popup is opened
 chrome.storage.local.get({ colors: [] }, (result) => {
