@@ -24,6 +24,8 @@ Activate PixelPalette: With a simple keyboard shortcut or by clicking the extens
 
 Select Color: Hover over any pixel on your browser window to preview the color. Click to select.
 
+![pp_demo](https://github.com/tomcadene/pixelpalette/assets/165381734/6c518c38-d374-40e7-9a97-bb98b117d2d3)
+
 Copy & Use: The color's value is automatically saved in the extension popup and copied to your clipboard in your chosen format, ready to be pasted into your code or design tool. (wip)
 
 ### Use Case:
