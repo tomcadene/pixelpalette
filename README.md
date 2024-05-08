@@ -17,6 +17,9 @@ PixelPalette is a browser extension designed to enhance the workflow of designer
 🎨 Palette Management: Automatically save the latests colors for easy access and reference.
 
 ### How It Works:
+
+![pp_popup](https://github.com/tomcadene/pixelpalette/assets/165381734/672b9036-0c5c-4482-98ec-23ce5a2707b7)
+
 Activate PixelPalette: With a simple keyboard shortcut or by clicking the extension icon.
 
 Select Color: Hover over any pixel on your browser window to preview the color. Click to select.
